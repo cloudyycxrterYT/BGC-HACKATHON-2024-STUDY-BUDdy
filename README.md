@@ -1,0 +1,1 @@
+Study Buddy is your personal AI that is always there when you need it. It can help with Homework​​, Tips to study, Informational sites, Study Groups near you, and much more! Study Buddy wants to help you and ensure you have a great GPA and feel confident in your work

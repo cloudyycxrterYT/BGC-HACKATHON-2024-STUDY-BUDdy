@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Sandbox</title>
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.css"><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+< html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Buddy Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Basic font */
+            background: #e8f5e9; /* Light green background */
+            margin: 0;
+            color: #333; /* Dark text for readability */
+        }
+        header {
+            background: #c8e6c9; /* Lighter green for header */
+            padding: 20px;
+            text-align: center; /* Centered text */
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none; /* No underlines */
+            color: #2e7d32; /* Dark green links */
+        }
+        nav a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+        #slideshow {
+            margin: 20px auto;
+            max-width: 1000px; /* Limit the size */
+            height: 600px; /* Fixed height */
+            border-radius: 10px; /* Rounded corners */
+            overflow: hidden; /* Hide overflow */
+            background: rgba(255, 255, 255, 0.9); /* Light background */
+        }
+        iframe {
+            width: 100%; /* Full width for iframe */
+            height: 100%; /* Full height for iframe */
+            border: none; /* No border */
+        }
+        #about {
+            max-width: 600px; /* Limit width */
+            margin: 20px auto; /* Center it */
+            background: rgba(255, 255, 255, 0.9); /* Light background */
+            padding: 20px; /* Padding */
+            border-radius: 5px; /* Rounded corners */
+        }
+        footer {
+            background: #c8e6c9; /* Lighter green for footer */
+            text-align: center; /* Centered text */
+            padding: 10px; /* Padding */
+        }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed position */
+            z-index: 1; /* On top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background: rgba(0,0,0,0.4); /* Black background with transparency */
+            padding-top: 60px; /* Space from the top */
+        }
+        .modal-content {
+            background: #fff; /* White background for the modal */
+            margin: 5% auto; /* Centered */
+            padding: 20px; /* Padding */
+            border: 1px solid #888; /* Border */
+            width: 80%; /* Width of modal */
+            max-width: 500px; /* Max width */
+            text-align: center; /* Center text */
+        }
+        .close {
+            color: #aaa; /* Close button color */
+            float: right; /* Float to the right */
+            font-size: 28px; /* Bigger font */
+            cursor: pointer; /* Pointer cursor */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎉 Welcome to Your Study Buddy Chatbot! 🎉</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+    <div id="slideshow">
+        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRzIMA0vFyiJDt42dIeeDgwXfNteZjdQXYCIoj-KaCBw7xKWS0AB7t8QULvK6f60AaG7T0i8kQar4Bk/embed?start=false&loop=false&delayms=3000" allowfullscreen></iframe>
+    </div>
+
+    <div id="about">
+        <h2>About This Project 🌟</h2>
+        <p>Check out the awesome team behind this! 👩‍💻👨‍💻</p>
+        <ul>
+            <li>Carter Cleveland-Lax🐨</li>
+            <li>Chloe Cleveland-Lax🦄</li>
+            <li>Shaylynn Hinton 🌈</li>
+            <li>London Asher 🌍</li>
+            <li>Mayana Wilson-Ahlstrom 💖</li>
+        </ul>
+        <p>Big shoutout to our mentors 🙌:</p>
+        <ul>
+            <li>Regina</li>
+            <li>LaPorchia</li>
+            <li>Arjun</li>
+            <li>Britney</li>
+            <li>Debbie</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>BGC HACKATHON 2024 🚀</p>
+    </footer>
+
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Hey there! 👋</h2>
+            <p>Welcome to Study Buddy! Let’s ace those studies together! 📚✨</p>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("welcomeModal");
+        const closeBtn = document.getElementsByClassName("close")[0];
+
+        // Show modal when page loads
+        window.onload = () => {
+            modal.style.display = "block"; 
+        }
+
+        // Close the modal and load Watson when clicked
+        closeBtn.onclick = () => {
+            modal.style.display = "none"; 
+            loadWatson(); 
+        }
+
+        // Close modal if clicked outside
+        window.onclick = (event) => {
+            if (event.target == modal) {
+                modal.style.display = "none"; 
+                loadWatson(); 
+            }
+        }
+
+        // Function to load Watson Assistant
+        function loadWatson() {
+            window.watsonAssistantChatOptions = {
+                integrationID: "37164710-51d1-43a9-b25e-6a0aa505ff88",
+                region: "us-south",
+                serviceInstanceID: "f467eecb-8bd4-4e2c-b6c2-a44e60c025ba",
+                onLoad: async (instance) => { await instance.render(); }
+            };
+            setTimeout(() => {
+                const script = document.createElement('script');
+                script.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+                document.head.appendChild(script);
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
